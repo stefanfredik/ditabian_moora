@@ -74,7 +74,7 @@
 
         <div>
 
-            <p style="text-align: right;"><?php echo "Desa Tondong Belang, " . date('d-m-Y'); ?></p>
+            <p style="text-align: right;"><?php echo APP_DESA . date('d-m-Y'); ?></p>
             <h3 class="head"><?= $title; ?></h3>
             <h3 class="head">Tahun 2023</h3>
         </div>
@@ -83,7 +83,7 @@
         <?= $this->renderSection("table"); ?>
         <div class="footer">
             <div class="title">
-                Kepala Lurah
+                Kepala Desa
             </div>
 
             <div>

@@ -118,6 +118,6 @@
 
 
     body {
-        background-color: var(--bs-teal-soft);
+        background-color: var(--bs-white);
     }
 </style>

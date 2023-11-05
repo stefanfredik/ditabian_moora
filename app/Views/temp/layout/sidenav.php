@@ -1,5 +1,5 @@
 <div id="layoutSidenav_nav">
-    <nav class="sidenav shadow-right sidenav-dark">
+    <nav class="sidenav shadow-right sidenav-dark bg-primary">
 
         <div class="sidenav-menu">
             <div class="text-center my-2">

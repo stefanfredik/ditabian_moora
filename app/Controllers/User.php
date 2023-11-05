@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Users;
+use App\Models\UsersModel;
 use CodeIgniter\API\ResponseTrait;
 use Myth\Auth\Password;
 
@@ -20,7 +21,7 @@ class User extends BaseController {
 
 
     public function __construct() {
-        $this->userModel = new Users();
+        $this->userModel = new UsersModel();
     }
 
     public function index() {

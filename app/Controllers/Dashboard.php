@@ -9,6 +9,7 @@ use App\Models\PendudukModel;
 use App\Models\PesertaModel;
 use App\Models\SubkriteriaModel;
 use App\Models\Users;
+use App\Models\UsersModel;
 
 class Dashboard extends BaseController {
     var $meta = [
@@ -19,7 +20,7 @@ class Dashboard extends BaseController {
     ];
 
     public function index() {
-        $dataUser = new Users();
+        $dataUser = new UsersModel();
         $dataPenduduk = new PendudukModel();
         $dataPeserta = new PesertaModel();
         $dataKuota = new KuotaModel();
