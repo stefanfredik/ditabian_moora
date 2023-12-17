@@ -78,7 +78,7 @@ class Kriteria extends BaseController {
             ]
         ];
 
-        $this->forge->addColumn('peserta', $field);
+        $this->forge->addColumn('datapenduduk', $field);
         $this->kriteriaModel->save($data);
 
         $res = [
@@ -109,10 +109,7 @@ class Kriteria extends BaseController {
         $kriteria = $this->kriteriaModel->find($id);
 
         $this->kriteriaModel->delete($id);
-
-
-
-        $this->forge->dropColumn('peserta', $kriteria["keterangan"]);
+        $this->forge->dropColumn('datapenduduk', $kriteria["keterangan"]);
 
         $res = [
             'status'    => 'success',

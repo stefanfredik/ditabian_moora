@@ -55,26 +55,6 @@
                             </select>
                         </div>
                     </div>
-
-                    <?php foreach ($dataKriteria as $dt) : ?>
-                        <div class="row mb-2">
-                            <div class="col-md-4">
-                                <label class="form-label"><?= $dt['keterangan'] . ' - ' . $dt['kriteria']; ?></label>
-                            </div>
-
-                            <div class="col-md-8">
-                                <select class="form-control" name="<?= $dt["keterangan"] ?>" id="" required>
-                                    <option value="">Pilih Subkriteria</option>
-                                    <?php foreach ($dataSubkriteria as $sk) :
-                                        if ($dt['id'] == $sk['id_kriteria']) :
-                                    ?>
-                                            <option value="<?= $sk['id']; ?>"><?= $sk['subkriteria']; ?></option>
-                                    <?php endif;
-                                    endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

@@ -63,23 +63,6 @@
                     </div>
                 </div>
 
-                <div class="row mb-1">
-                    <div class="col-md-4">
-                        <label class="form-label">RT</label>
-                    </div>
-                    <div class="col-md-8">
-                        <p><?= $penduduk['rt'] ?></p>
-                    </div>
-                </div>
-
-                <div class="row mb-1">
-                    <div class="col-md-4">
-                        <label class="form-label">RW</label>
-                    </div>
-                    <div class="col-md-8">
-                        <p><?= $penduduk['rw'] ?></p>
-                    </div>
-                </div>
 
                 <div class="row mb-1">
                     <div class="col-md-4">
@@ -118,6 +101,32 @@
                     <div class="col-md-8">
                         <p><?= $penduduk['provinsi'] ?></p>
                     </div>
+                </div>
+
+                <hr>
+                <h5>Data Kriteria</h5>
+                <div class="border rounded p-3">
+                    <?php foreach ($dataKriteria as $dt) : ?>
+                        <div class="row mb-2">
+                            <div class="col-md-4">
+                                <label class="form-label"><?= $dt['keterangan'] . ' - ' . $dt['kriteria']; ?></label>
+                            </div>
+
+                            <div class="col-md-8">
+                                <?php
+                                $k = $dt['keterangan'];
+                                foreach ($dataSubkriteria as $sk) :
+                                    if ($dt['id'] == $sk['id_kriteria']) {
+                                        if (isset($penduduk[$k])) {
+                                            echo ($penduduk[$k] == $sk['id']) ? '<p>' . $sk['subkriteria'] . '</p>' : false;
+                                        } else {
+                                            'Data Belum Lengkap';
+                                        }
+                                    }
+                                endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="modal-footer">

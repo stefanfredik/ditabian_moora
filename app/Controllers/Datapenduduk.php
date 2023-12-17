@@ -3,7 +3,10 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\KriteriaModel;
 use App\Models\PendudukModel;
+use App\Models\PesertaModel;
+use App\Models\SubkriteriaModel;
 use CodeIgniter\API\ResponseTrait;
 
 class Datapenduduk extends BaseController {
@@ -18,6 +21,9 @@ class Datapenduduk extends BaseController {
 
     public function __construct() {
         $this->pendudukModel = new PendudukModel();
+        $this->kriteriaModel = new KriteriaModel();
+        $this->subKriteriaModel = new SubkriteriaModel();
+        $this->pesertaModel = new PesertaModel();
     }
 
     public function index() {
@@ -32,12 +38,12 @@ class Datapenduduk extends BaseController {
     }
 
     public function tambah() {
-
-
-
         $data = [
             'title' => 'Tambah Data Penduduk',
-            'meta'   => $this->meta
+            'meta'   => $this->meta,
+            'dataKriteria' => $this->kriteriaModel->findAll(),
+            'dataSubkriteria' => $this->subKriteriaModel->findAll(),
+            'dataPeserta' => $this->pesertaModel->findAll(),
         ];
 
         return view('/penduduk/tambah', $data);
@@ -59,7 +65,9 @@ class Datapenduduk extends BaseController {
         $data = [
             'title' => 'Edit Data Penduduk',
             'penduduk'  => $this->pendudukModel->find($id),
-            'meta'      => $this->meta
+            'meta'      => $this->meta,
+            'dataKriteria' => $this->kriteriaModel->findAll(),
+            'dataSubkriteria' => $this->subKriteriaModel->findAll(),
         ];
 
         return view('/penduduk/edit', $data);
@@ -71,7 +79,9 @@ class Datapenduduk extends BaseController {
         $data = [
             'title' => 'Detail Data Penduduk',
             'penduduk'  => $this->pendudukModel->find($id),
-            'meta'   => $this->meta
+            'meta'   => $this->meta,
+            'dataKriteria'  => $this->kriteriaModel->findAll(),
+            'dataSubkriteria' => $this->subKriteriaModel->findAll(),
         ];
 
         return $this->respond(view('/penduduk/detail', $data), 200);
@@ -164,6 +174,23 @@ class Datapenduduk extends BaseController {
         array_shift($dataExcel);
 
         $data  = array();
+
+        foreach ($dataExcel as $t) {
+            $dt["nik"] = $t[0];
+            $dt["no_kk"] = $t[1];
+            $dt["nama_lengkap"] = $t[2];
+            $dt["jenis_kelamin"] = $t[3] == 1  ? "Laki-Laki" : "Wanita";
+            $dt["tanggal_lahir"] = $t[4];
+            $dt["alamat"] = $t[5];
+            $dt["rt"] = $t[6];
+            $dt["rw"] = $t[7];
+            $dt["desa"] = $t[8];
+            $dt["kecamatan"] = $t[9];
+            $dt["kabupaten"] = $t[10];
+            $dt["provinsi"] = $t[11];
+            array_push($data, $dt);
+        }
+
 
         foreach ($dataExcel as $t) {
             $dt["nik"] = $t[0];
